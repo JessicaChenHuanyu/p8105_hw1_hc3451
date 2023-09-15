@@ -18,7 +18,9 @@ ncol(early_january_weather)
 mean(early_january_weather$temp)
 ```
 
-The variables in this dataset includes: year, month, day, etc. with the value of int; temp, dewp, humid, etc. with the value of dbl. This dataset has 235 rows and 15 columns. The mean temperature is 39.58.
+The variables in this dataset includes: year, month, day, etc. with the value of int; temp, dewp, humid, etc. with the value of dbl.
+This dataset has 235 rows and 15 columns.
+The mean temperature is 39.58.
 
 ```{r}
 library(ggplot2)
@@ -48,6 +50,7 @@ head(data_frame)
 # Calculate Mean Value
 mean(pull(data_frame, random_sample))
 mean(pull(data_frame, greater_0))
+
 numeric_character_vector <- as.numeric(pull(data_frame, character_vector))
 mean(numeric_character_vector)
 numeric_factor_vector <- as.numeric(pull(data_frame, factor_vector))
