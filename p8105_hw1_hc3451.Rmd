@@ -58,4 +58,5 @@ mean(numeric_factor_vector)
 
 ```
 
-Mean works for numeric data types (such as random_sample), but not for non-numeric types (such as character_vector and factor_vector). For non-numeric types variables, converting them to numeric for mean calculation is a possible solution but does not work every time.
+Mean works for numeric data types (such as random_sample), but not for non-numeric types (such as character_vector and factor_vector).
+For non-numeric types variables, converting them to numeric for mean calculation is a possible solution but does not work every time.
