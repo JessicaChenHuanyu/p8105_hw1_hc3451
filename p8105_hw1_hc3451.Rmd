@@ -1,42 +1,45 @@
 ---
 title: "p8105_hw1_hc3451"
 author: "Huanyu Chen"
-date: "2023-09-15"
+date: "2023-09-20"
 output: github_document
 ---
 
 # Problem 1
 
-```{r}
+```{r, include=FALSE}
 library(moderndive)
+library(ggplot2)
+library(tidyverse)
+```
 
+```{r}
 # Analyze Dataset
-head(early_january_weather)
+data("early_january_weather")
 names(early_january_weather)
 nrow(early_january_weather)
 ncol(early_january_weather)
 mean(early_january_weather$temp)
 ```
 
-The variables in this dataset includes: year, month, day, etc. with the value of int; temp, dewp, humid, etc. with the value of dbl.
-This dataset has 235 rows and 15 columns.
-The mean temperature is 39.58.
+**The variables in this dataset includes: year, month, day, etc. with the value of int; temp, dewp, humid, etc. with the value of dbl. This dataset has `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns. The mean temperature is `r mean(early_january_weather$temp)`.**
 
 ```{r}
-library(ggplot2)
+head(early_january_weather)
 
 # Draw & Save Scatterplot
 scatter_plot <- ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) +
   geom_point() +
   labs(x = "Time (Hour)", y = "Temperature", color = "Humidity")
-print(scatter_plot)
+scatter_plot
 ggsave("scatterplot_temp_vs_time_hour.png", plot = scatter_plot)
 ```
 
-# Problem 2
-```{r}
-library(tidyverse)
+**Both humidity and temperature fluctuate approximately the same way in one day: during the daytime, the temperature is high and the humidity is high, while in the evening, the temperature and humidity are generally low.**
 
+# Problem 2
+
+```{r}
 # Create Data Frame
 random_sample <- rnorm(10)
 greater_0 <- random_sample > 0
@@ -50,13 +53,15 @@ head(data_frame)
 # Calculate Mean Value
 mean(pull(data_frame, random_sample))
 mean(pull(data_frame, greater_0))
+```
 
+```{r, eval=FALSE}
+numeric_greater_0 <- as.numeric(pull(data_frame, greater_0))
+mean(numeric_greater_0)
 numeric_character_vector <- as.numeric(pull(data_frame, character_vector))
 mean(numeric_character_vector)
 numeric_factor_vector <- as.numeric(pull(data_frame, factor_vector))
 mean(numeric_factor_vector)
-
 ```
 
-Mean works for numeric data types (such as random_sample), but not for non-numeric types (such as character_vector and factor_vector).
-For non-numeric types variables, converting them to numeric for mean calculation is a possible solution but does not work every time.
+**Mean works for numeric data types (such as random_sample), but not for non-numeric types (such as character_vector and factor_vector). For non-numeric types variables, converting them to numeric for mean calculation is a possible solution but does not work every time.**
